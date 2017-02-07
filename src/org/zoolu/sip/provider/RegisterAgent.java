@@ -19,22 +19,20 @@
  * Luca Veltri (luca.veltri@unipr.it)
  */
 
-package local.ua;
+package org.zoolu.sip.provider;
 
 
-import local.net.KeepAliveSip;
 import org.zoolu.net.SocketAddress;
+import org.zoolu.net.KeepAliveSip;
 import org.zoolu.sip.address.*;
-import org.zoolu.sip.provider.SipStack;
-import org.zoolu.sip.provider.SipProvider;
 import org.zoolu.sip.header.*;
 import org.zoolu.sip.message.*;
 import org.zoolu.sip.transaction.TransactionClient;
 import org.zoolu.sip.transaction.TransactionClientListener;
 import org.zoolu.sip.authentication.DigestAuthentication;
-import org.zoolu.tools.Log;
-import org.zoolu.tools.LogLevel;
 
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import java.util.Vector;
 
 
@@ -86,7 +84,7 @@ public class RegisterAgent implements Runnable, TransactionClientListener
    boolean is_running;
 
    /** Event logger. */
-   Log log;
+   Logger logger = Logger.getLogger(getClass().getCanonicalName());
 
    /** Number of registration attempts. */
    int attempts;
@@ -114,7 +112,6 @@ public class RegisterAgent implements Runnable, TransactionClientListener
    private void init(SipProvider sip_provider, String target_url, String contact_url, RegisterAgentListener listener)
    {  this.listener=listener;
       this.sip_provider=sip_provider;
-      this.log=sip_provider.getLog();
       this.target=new NameAddress(target_url);
       this.contact=new NameAddress(contact_url);
       this.expire_time=SipStack.default_expires;
@@ -147,7 +144,7 @@ public class RegisterAgent implements Runnable, TransactionClientListener
    public void register(int expire_time)
    {  attempts=0;
       if (expire_time>0) this.expire_time=expire_time;
-      Message req=MessageFactory.createRegisterRequest(sip_provider,target,target,contact);
+      Message req=MessageFactory.createRegisterRequest(sip_provider,target,target,contact,null,null);
       req.setExpiresHeader(new ExpiresHeader(String.valueOf(expire_time)));
       if (next_nonce!=null)
       {  AuthorizationHeader ah=new AuthorizationHeader("Digest");
@@ -161,8 +158,8 @@ public class RegisterAgent implements Runnable, TransactionClientListener
          ah.addResponseParam(response);
          req.setAuthorizationHeader(ah);
       }
-      if (expire_time>0) printLog("Registering contact "+contact+" (it expires in "+expire_time+" secs)",LogLevel.HIGH);
-      else printLog("Unregistering contact "+contact,LogLevel.HIGH);
+      if (expire_time>0) logger.info("Registering contact "+contact+" (it expires in "+expire_time+" secs)");
+      else logger.info("Unregistering contact "+contact);
       TransactionClient t=new TransactionClient(sip_provider,req,this);
       t.request(); 
    }
@@ -178,11 +175,11 @@ public class RegisterAgent implements Runnable, TransactionClientListener
    public void unregisterall()
    {  attempts=0;
       NameAddress user=new NameAddress(target);
-      Message req=MessageFactory.createRegisterRequest(sip_provider,target,target,null);
+      Message req=MessageFactory.createRegisterRequest(sip_provider,target,target,null,null,null);
       //ContactHeader contact_star=new ContactHeader(); // contact is *
       //req.setContactHeader(contact_star);
       req.setExpiresHeader(new ExpiresHeader(String.valueOf(0)));
-      printLog("Unregistering all contacts",LogLevel.HIGH);
+      logger.info("Unregistering all contacts");
       TransactionClient t=new TransactionClient(sip_provider,req,this); 
       t.request(); 
    }
@@ -235,7 +232,7 @@ public class RegisterAgent implements Runnable, TransactionClientListener
             Thread.sleep(renew_time*1000);
          }
       }
-      catch (Exception e) {  printException(e,LogLevel.HIGH);  }
+      catch (Exception e) {  logger.log(Level.INFO, "error while running", e);  }
       is_running=false;
    }
 
@@ -273,7 +270,7 @@ public class RegisterAgent implements Runnable, TransactionClientListener
          }
          if (expires>0 && expires<renew_time) renew_time=expires;
          
-         printLog("Registration success: "+result,LogLevel.HIGH);
+         logger.info("Registration success: "+result);
          if (listener!=null) listener.onUaRegistrationSuccess(this,target,contact,result);
       }
    }
@@ -289,7 +286,6 @@ public class RegisterAgent implements Runnable, TransactionClientListener
             req.setCSeqHeader(req.getCSeqHeader().incSequenceNumber());
             WwwAuthenticateHeader wah=resp.getWwwAuthenticateHeader();
             String qop_options=wah.getQopOptionsParam();
-            //printLog("DEBUG: qop-options: "+qop_options,LogLevel.MEDIUM);
             qop=(qop_options!=null)? "auth" : null;
             AuthorizationHeader ah=(new DigestAuthentication(SipMethods.REGISTER,req.getRequestLine().getAddress().toString(),wah,qop,null,username,passwd)).getAuthorizationHeader();
             req.setAuthorizationHeader(ah);
@@ -298,7 +294,7 @@ public class RegisterAgent implements Runnable, TransactionClientListener
          }
          else
          {  String result=code+" "+status.getReason();
-            printLog("Registration failure: "+result,LogLevel.HIGH);
+            logger.info("Registration failure: "+result);
             if (listener!=null) listener.onUaRegistrationFailure(this,target,contact,result);
          }
       }
@@ -307,22 +303,9 @@ public class RegisterAgent implements Runnable, TransactionClientListener
    /** Callback function called when client expires timeout. */
    public void onTransTimeout(TransactionClient transaction)
    {  if (transaction.getTransactionMethod().equals(SipMethods.REGISTER))
-      {  printLog("Registration failure: No response from server.",LogLevel.HIGH);
+      {  logger.info("Registration failure: No response from server.");
          if (listener!=null) listener.onUaRegistrationFailure(this,target,contact,"Timeout");
       }
-   }
-
-   
-   // ****************************** Logs *****************************
-
-   /** Adds a new string to the default Log */
-   void printLog(String str, int level)
-   {  if (log!=null) log.println("RegisterAgent: "+str,level+SipStack.LOG_LEVEL_UA);  
-   }
-
-   /** Adds the Exception message to the default Log */
-   void printException(Exception e,int level)
-   {  if (log!=null) log.printException(e,level+SipStack.LOG_LEVEL_UA);
    }
 
 }

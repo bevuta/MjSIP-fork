@@ -1,4 +1,4 @@
-package local.ua;
+package org.zoolu.sip.provider;
 
 
 import org.zoolu.sip.address.NameAddress;

@@ -19,10 +19,8 @@
  * Luca Veltri (luca.veltri@unipr.it)
  */
 
-package local.net;
+package org.zoolu.net;
 
-
-import org.zoolu.net.*;
 import org.zoolu.sip.provider.SipProvider;
 import org.zoolu.sip.message.Message;
 

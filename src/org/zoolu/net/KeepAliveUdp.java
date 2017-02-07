@@ -19,10 +19,7 @@
  * Luca Veltri (luca.veltri@unipr.it)
  */
 
-package local.net;
-
-
-import org.zoolu.net.*;
+package org.zoolu.net;
 
 import org.zoolu.tools.Timer;
 import org.zoolu.tools.TimerListener;
