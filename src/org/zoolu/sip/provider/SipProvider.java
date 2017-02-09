@@ -763,15 +763,7 @@ public class SipProvider implements Configurable, TransportListener,
 			logger.info("Resolving host address '" + dest_addr + "'");
 		try {
 			int _dest_port = dest_port;
-			SRVRecordHelper srh = new SRVRecordHelper(
-					proto.equals("tls") ? "sips" : "sip",
-					proto.equals("tls") ? "tcp" : proto,
-					dest_addr,
-					dest_port);
-			if(srh.isEmpty())
-				throw new Exception("No DNS SRV or A results found for: " + dest_addr);
-			// Very big FIXME: shouldn't just take the first entry, should iterate
-			InetSocketAddress addr = srh.get(0);
+			InetSocketAddress addr = new InetSocketAddress(dest_addr, dest_port);
 			IpAddress dest_ipaddr = new IpAddress(addr.getAddress());
 			_dest_port = addr.getPort();
 			return sendMessage(msg, proto, dest_ipaddr, _dest_port, ttl);
