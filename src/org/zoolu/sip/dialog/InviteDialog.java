@@ -482,6 +482,11 @@ public class InviteDialog extends Dialog implements TransactionClientListener,
 		respond(code, reason, null, null);
 	}
 
+	public void refuse(int code, String reason, String contact) {
+		printLog("inside refuse(" + code + "," + reason + "," + contact + ")", LogLevel.MEDIUM);
+		respond(code, reason, contact, null);
+	}
+
 	/**
 	 * Refuses the incoming call. This method should be called when the
 	 * InviteDialog is in D_INVITED or D_ReINVITED state
@@ -494,7 +499,11 @@ public class InviteDialog extends Dialog implements TransactionClientListener,
 	}
 
 	public void busy() {
-		refuse(486, SipResponses.reasonOf(486)); // modified		
+		refuse(486, SipResponses.reasonOf(486)); // modified
+	}
+
+	public void busy(String contact) {
+		refuse(486, SipResponses.reasonOf(486), contact);
 	}
 	
 	/**

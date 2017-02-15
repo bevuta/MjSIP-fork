@@ -246,7 +246,7 @@ public class Call implements InviteDialogListener {
 	
 	public void busy() {
 		if (dialog != null)
-			dialog.busy(); // modified
+			dialog.busy(contact_url); // modified
 	}
 
 	// ************** Inherited from InviteDialogListener **************
