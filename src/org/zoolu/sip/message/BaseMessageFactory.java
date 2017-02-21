@@ -488,8 +488,7 @@ public abstract class BaseMessageFactory {
 		ToHeader toh = req.getToHeader();
 		if (local_tag != null)
 			toh.setParameter("tag", local_tag);
-		else if (SipProvider.pickTag(req) != null)
-			toh.setParameter("tag", SipProvider.pickTag(req));
+
 		resp.setToHeader(toh);
 		resp.setFromHeader(req.getFromHeader());
 		resp.setCallIdHeader(req.getCallIdHeader());
@@ -521,7 +520,7 @@ public abstract class BaseMessageFactory {
 		String localtag = null;
 		if (req.createsDialog() && !req.getToHeader().hasTag()) {
 			//fix issue 425 - also add tag to 18x responses
-			if (SipStack.early_dialog)
+			if (SipStack.early_dialog || (code >= 101 && code < 500))
 				localtag = SipProvider.pickTag(req);
 		}
 		return createResponse(req, code, reason, localtag, contact, null, null);
