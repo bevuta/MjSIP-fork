@@ -678,8 +678,12 @@ public class InviteDialog extends Dialog implements TransactionClientListener,
 			TransactionServer ts = new TransactionServer(sip_provider, msg,
 					null);
 			// ts.listen();
-			ts.respondWith(MessageFactory.createResponse(msg, 200, SipResponses
-					.reasonOf(200), null));
+
+                        // Pick the local tag from the invite request as
+                        // it is missing in the CANCEL request message
+                        // and it is required to identify the dialog
+                        String localtag = SipProvider.pickTag(invite_req);
+                        ts.respondWith(MessageFactory.createResponse(msg, 200, SipResponses.reasonOf(200), localtag, null, null, null));
 			// automatically sends a 487 Cancelled
 			Message resp = MessageFactory.createResponse(invite_req, 487,
 					SipResponses.reasonOf(487), null);
