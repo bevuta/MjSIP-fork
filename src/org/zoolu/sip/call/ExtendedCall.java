@@ -202,8 +202,8 @@ public class ExtendedCall extends Call implements ExtendedInviteDialogListener {
 			printLog("NOT the current dialog", LogLevel.HIGH);
 			return;
 		}
-		printLog("onDlgNotify()", LogLevel.LOW);
-		if (event.equals("refer")) {
+		printLog("onDlgNotify() / event: " + event + " sipfragment: " + sipfragment, LogLevel.LOW);
+		if (event.startsWith("refer")) {
 			Message fragment = new Message(sipfragment);
 			printLog("Notify: " + sipfragment, LogLevel.HIGH);
 			if (fragment.isResponse()) {
