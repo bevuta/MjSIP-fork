@@ -115,6 +115,10 @@ public class Call implements InviteDialogListener {
 	public String getRemoteSessionDescriptor() {
 		return remote_sdp;
 	}
+        
+        public InviteDialog getInviteDialog() {
+            return dialog;
+        }
 
 	/** Whether the call is on (active). */
 	public boolean isOnCall() {
