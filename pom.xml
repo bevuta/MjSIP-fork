@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.opentelecoms.sip</groupId>
+  <groupId>com.bevuta</groupId>
   <artifactId>mjsip-fork</artifactId>
   <name>MjSIP-fork</name>
   <packaging>jar</packaging>
   <version>1.6+lumicall.4</version>
   <description>Fork of MjSIP SIP stack</description>
-  <url>https://github.com/opentelecoms-org/MjSIP-fork</url>
+  <url>https://github.com/bevuta/MjSIP-fork</url>
   <licenses>
     <license>
       <name>The GPL Version 2.0</name>
@@ -16,16 +16,22 @@
     </license>
   </licenses>
   <scm>
-    <connection>scm:git:git@github.com:opentelecoms-org/MjSIP-fork.git</connection>
-    <url>scm:git:git@github.com:opentelecoms-org/MjSIP-fork.git</url>
-    <developerConnection>scm:git:git@github.com:opentelecoms-org/MjSIP-fork.git</developerConnection>
+    <connection>scm:git:git@github.com:bevuta/MjSIP-fork.git</connection>
+    <url>scm:git:git@github.com:bevuta/MjSIP-fork.git</url>
+    <developerConnection>scm:git:git@github.com:bevuta/MjSIP-fork.git</developerConnection>
   </scm>
   <developers>
     <developer>
-      <id>pocock</id>
-      <name>Daniel Pocock</name>
-      <email>daniel@pocock.pro</email>
-      <url>http://danielpocock.com</url>
+      <name>Ivan Stefanischin</name>
+      <email>ivan.stefanischin@bevuta.com</email>
+      <organization>bevuta IT</organization>
+      <organizationUrl>https://www.bevuta.com</organizationUrl>
+    </developer>
+    <developer>
+      <name>Christian Lask</name>
+      <email>christian.lask@bevuta.com</email>
+      <organization>bevuta IT</organization>
+      <organizationUrl>https://www.bevuta.com</organizationUrl>
     </developer>
   </developers>
   <dependencies>
@@ -115,46 +121,4 @@
       </plugin>
     </plugins>
   </build>
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-        <version>2.5.2</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </reporting>
-  <profiles>
-    <profile>
-      <id>release-sign-artifacts</id>
-      <activation>
-        <property>
-          <name>performRelease</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.4</version>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 </project>
