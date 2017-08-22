@@ -48,11 +48,6 @@
       <version>1.0.0</version>
     </dependency>
   </dependencies>
-  <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>7</version>
-  </parent>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
