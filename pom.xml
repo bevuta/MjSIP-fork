@@ -8,6 +8,16 @@
   <version>1.6+lumicall.4</version>
   <description>Fork of MjSIP SIP stack</description>
   <url>https://github.com/bevuta/MjSIP-fork</url>
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
   <licenses>
     <license>
       <name>The GPL Version 2.0</name>
