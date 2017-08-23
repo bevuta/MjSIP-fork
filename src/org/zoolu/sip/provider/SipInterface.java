@@ -28,25 +28,38 @@ import org.zoolu.sip.message.Message;
 /**
  * SipInterface is actually the SIP SAP (Service Access Point) and can be used
  * to send and receive SIP messages associated with a specific method,
- * transaction, or dialog. <p/> SipInterface provides a simple interface to the
- * multiplexing function provided by the SipProvider layer. <br/> It simply
+ * transaction, or dialog.
+ * 
+ * SipInterface provides a simple interface to the
+ * multiplexing function provided by the SipProvider layer. It simply
  * wraps the SipProvider by adding and removing the listener for capturing
- * received SIP messages. <p/> When creating a new SipInterface the following
- * parameters, have to be specified: <b> - <i>sip_provider<i/> is the
- * SipProvider the SipInterface has to be bound to, <b> - <i>id<i/> is the SIP
- * interface identifier the SipInterface has to be bound to, <b> - <i>listener<i/>
- * is the SipInterfaceListener that received messages are passed to. <p/> The
- * SIP interface <i>id<i/> specifies the type of messages the listener is going
- * to receive for. Together with the <i>sip_provider<i/>, it represents the
+ * received SIP messages.
+ * 
+ * When creating a new SipInterface the following
+ * parameters, have to be specified:
+ * - <i>sip_provider</i> is the
+ * SipProvider the SipInterface has to be bound to,
+ * - <i>id</i> is the SIP
+ * interface identifier the SipInterface has to be bound to,
+ * - <i>listener</i>
+ * is the SipInterfaceListener that received messages are passed to.
+ * 
+ * The
+ * SIP interface <i>id</i> specifies the type of messages the listener is going
+ * to receive for. Together with the <i>sip_provider</i>, it represents the
  * complete SIP Service Access Point (SAP) address/identifier used for
- * demultiplexing SIP messages at receiving side. <p/> The identifier can be of
+ * demultiplexing SIP messages at receiving side.
+ * The identifier can be of
  * one of the three following types: transaction_id, dialog_id, or method_id.
- * These types of identifiers characterize respectively: <br> - messages within
- * a specific transaction, <br> - messages within a specific dialog, <br> -
- * messages related to a specific SIP method. It is also possible to use the the
- * identifier ANY to specify <br> - all messages that are out of any
+ * These types of identifiers characterize respectively:
+ * - messages within
+ * a specific transaction,
+ * - messages within a specific dialog,
+ * - messages related to a specific SIP method. It is also possible to use the
+ * the identifier ANY to specify
+ * - all messages that are out of any
  * transactions, dialogs, or already specified method types.
- * <p>
+ * 
  * When receiving a message, the underling SipProvider first tries to look for a
  * SipInterface associated to the corresponding transaction, then looks for a
  * SipInterface associated to the corresponding dialog, then for a SipInterface

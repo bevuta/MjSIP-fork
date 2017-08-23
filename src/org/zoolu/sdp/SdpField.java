@@ -58,7 +58,7 @@ public class SdpField {
 	}
 
 	/**
-	 * Creates a new SdpField based on a SDP line of the form <type>=<value>.
+	 * Creates a new SdpField based on a SDP line of the form type=value.
 	 * The SDP value terminats with the end of the String or with the first CR
 	 * or LF char.
 	 * 

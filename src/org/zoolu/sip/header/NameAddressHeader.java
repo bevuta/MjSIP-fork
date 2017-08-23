@@ -71,8 +71,8 @@ public abstract class NameAddressHeader extends ParametricHeader {
 	/**
 	 * Returns the index of the first semicolon before the first parameter.
 	 * 
-	 * @returns the index of the semicolon before the first parameter, or -1 if
-	 *          no parameter is present.
+	 * @return the index of the semicolon before the first parameter, or -1 if
+	 *         no parameter is present.
 	 */
 	protected int indexOfFirstSemi() {
 		Parser par = new Parser(value);

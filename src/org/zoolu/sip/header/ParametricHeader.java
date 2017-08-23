@@ -50,7 +50,7 @@ public abstract class ParametricHeader extends Header {
 	/**
 	 * Gets the first word.
 	 * 
-	 * @returns the first word or null if no value is present beafore
+	 * @return the first word or null if no value is present beafore
 	 *          parameters.
 	 */
 	/*
@@ -61,8 +61,8 @@ public abstract class ParametricHeader extends Header {
 	/**
 	 * Returns the index of the first semicolon before the first parameter.
 	 * 
-	 * @returns the index of the semicolon before the first parameter, or -1 if
-	 *          no parameter is present.
+	 * @return the index of the semicolon before the first parameter, or -1 if
+	 *         no parameter is present.
 	 */
 	protected int indexOfFirstSemi() { // int index=(new
 		// Parser(value)).goToSkippingQuoted(';').skipChar().skipWSP().getPos();
@@ -73,7 +73,7 @@ public abstract class ParametricHeader extends Header {
 	/**
 	 * Gets the value of specified parameter.
 	 * 
-	 * @returns the parameter value or null if parameter does not exist or
+	 * @return the parameter value or null if parameter does not exist or
 	 *          doesn't have a value (i.e. in case of flag parameter).
 	 */
 	public String getParameter(String name) {
@@ -87,7 +87,7 @@ public abstract class ParametricHeader extends Header {
 	/**
 	 * Gets a String Vector of parameter names.
 	 * 
-	 * @returns a Vector of String
+	 * @return a Vector of String
 	 */
 	public Vector<String> getParameterNames() {
 		int index = indexOfFirstSemi();

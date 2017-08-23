@@ -35,14 +35,14 @@ import org.zoolu.net.UdpPacket;
 /**
  * Class Message extends class sip.message.BaseMessage adding some SIP
  * extensions.
- * <p />
+ * 
  * Class Message supports all methods and header definened in RFC3261, plus:
  * <ul>
- * <li> method MESSAGE (RFC3428) </>
- * <li> method REFER (RFC3515) </>
- * <li> header Refer-To </>
- * <li> header Referred-By </>
- * <li> header Event </>
+ * <li> method MESSAGE (RFC3428) </li>
+ * <li> method REFER (RFC3515) </li>
+ * <li> header Refer-To </li>
+ * <li> header Referred-By </li>
+ * <li> header Event </li>
  * </ul>
  */
 public class Message extends org.zoolu.sip.message.BaseMessage {

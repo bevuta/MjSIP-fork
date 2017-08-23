@@ -149,7 +149,7 @@ public abstract class AuthenticationHeader extends Header {
 	/**
 	 * Gets a String Vector of parameter names.
 	 * 
-	 * @returns a Vector of String.
+	 * @return a Vector of String.
 	 */
 	/* HSC CHANGES START */
 	public Vector<String> getParameters() {

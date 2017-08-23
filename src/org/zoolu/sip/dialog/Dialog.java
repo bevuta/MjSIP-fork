@@ -149,7 +149,7 @@ public abstract class Dialog extends DialogInfo implements SipProviderListener {
 		return sip_provider;
 	}
 
-	/** Gets the inique Dialog-ID </i> */
+	/** Gets the inique Dialog-ID */
 	public DialogIdentifier getDialogID() {
 		return dialog_id;
 	}

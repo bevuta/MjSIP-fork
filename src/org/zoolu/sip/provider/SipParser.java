@@ -75,7 +75,7 @@ public class SipParser extends Parser {
 	/** MARK char[], composed by: '-' , '_' , '.' , '!' , '~' , '*' , '\'' , '|' */
 	public static char[] MARK = { '-', '_', '.', '!', '~', '*', '\'', '|' };
 
-	/** SEPARATOR char[], composed by: ' ','\t','\r','\n','(',')','<','>',',',';','\\','"','/','[',']','?','=','{','}' */
+	/** SEPARATOR char[], composed by: ' ','\t','\r','\n','(',')','&lt;','&gt;',',',';','\\','"','/','[',']','?','=','{','}' */
 	public static char[] SEPARATOR = { ' ', '\t', '\r', '\n', '(', ')', '<',
 			'>', ',', ';', '\\', '"', '/', '[', ']', '?', '=', '{', '}' };
 
@@ -356,8 +356,8 @@ public class SipParser extends Parser {
 	/**
 	 * Gets the value of specified parameter.
 	 * 
-	 * @returns the parameter value or null if parameter does not exist or
-	 *          doesn't have a value (i.e. in case of flag parameter).
+	 * @return the parameter value or null if parameter does not exist or
+	 *         doesn't have a value (i.e. in case of flag parameter).
 	 */
 	public String getParameter(String name) {
 		while (hasMore()) {

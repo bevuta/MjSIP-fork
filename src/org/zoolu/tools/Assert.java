@@ -25,7 +25,7 @@ package org.zoolu.tools;
 
 /**
  * Class Assert provides some static methods to check some inline conditions.
- * When an assertion fails an AssertionException is throws. <p/> Such a tool
+ * When an assertion fails an AssertionException is throws. Such a tool
  * could be helpful for debugging.
  */
 public class Assert {

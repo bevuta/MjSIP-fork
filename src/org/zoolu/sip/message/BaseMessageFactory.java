@@ -64,7 +64,7 @@ public abstract class BaseMessageFactory {
 	 *            FromHeader NameAddress
 	 * @param contact
 	 *            Contact NameAddress (if null, no ContactHeader is added)
-	 * @param host_addr
+	 * @param via_addr
 	 *            Via address
 	 * @param host_port
 	 *            Via port number
@@ -161,7 +161,7 @@ public abstract class BaseMessageFactory {
 	 * 
 	 * @param sip_provider
 	 *            the SipProvider used to fill the Via field
-	 * @see #createRequest(String,SipURL,NameAddress,NameAddress,NameAddress,String,String,int,String,long,String,String,String,String)
+	 * @see #createRequest(String,SipURL,NameAddress,NameAddress,NameAddress,String,String,int,boolean,String,long,String,String,String,String,String,String)
 	 */
 	public static Message createRequest(SipProvider sip_provider,
 			String method, SipURL request_uri, NameAddress to,
@@ -196,7 +196,7 @@ public abstract class BaseMessageFactory {
 	 * <LI> branch is picked random
 	 * </UL>
 	 * 
-	 * @see #createRequest(String,SipURL,NameAddress,NameAddress,NameAddress,String,String,int,String,long,String,String,String,String)
+	 * @see #createRequest(String,SipURL,NameAddress,NameAddress,NameAddress,String,String,int,boolean,String,long,String,String,String,String,String,String)
 	 */
 	public static Message createRequest(SipProvider sip_provider,
 			String method, SipURL request_uri, NameAddress to,
@@ -225,7 +225,7 @@ public abstract class BaseMessageFactory {
 	 * <LI> branch is picked random
 	 * </UL>
 	 * 
-	 * @see #createRequest(SipProvider,String,NameAddress,NameAddress,NameAddress,String)
+	 * @see #createRequest(SipProvider,String,NameAddress,NameAddress,String)
 	 */
 	public static Message createRequest(SipProvider sip_provider,
 			String method, NameAddress to, NameAddress from, String body) {
@@ -297,7 +297,7 @@ public abstract class BaseMessageFactory {
 	/**
 	 * Creates a new INVITE request out of any pre-existing dialogs.
 	 * 
-	 * @see #createRequest(String,SipURL,NameAddress,NameAddress,NameAddress,String,String,int,boolean,String,long,String,String,String,String)
+	 * @see #createRequest(String,SipURL,NameAddress,NameAddress,NameAddress,String,String,int,boolean,String,long,String,String,String,String,String,String)
 	 */
 	public static Message createInviteRequest(SipProvider sip_provider,
 			SipURL request_uri, NameAddress to, NameAddress from,
@@ -512,7 +512,7 @@ public abstract class BaseMessageFactory {
 	 * Creates a SIP response message. For 2xx responses generates the local tag
 	 * by means of the SipStack.pickTag(req) method.
 	 * 
-	 * @see #createResponse(Message,int,String,NameAddress,String,String body)
+	 * @see #createResponse(Message,int,String,String,NameAddress,String,String)
 	 */
 	public static Message createResponse(Message req, int code, String reason,
 			NameAddress contact) { // String

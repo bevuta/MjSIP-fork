@@ -10,7 +10,7 @@ import org.zoolu.tools.Random;
 /**
  * The HTTP Digest Authentication as defined in RFC2617. It can be used to i)
  * calculate an authentication response from an authentication request, or ii)
- * validate an authentication response. <br/> in the former case the
+ * validate an authentication response. In the former case the
  * DigestAuthentication is created based on a WwwAuthenticationHeader (or
  * ProxyAuthenticationHeader), while in the latter case it is created based on
  * an AuthorizationHeader (or ProxyAuthorizationHeader).

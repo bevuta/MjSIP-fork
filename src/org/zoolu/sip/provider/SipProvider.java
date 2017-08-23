@@ -56,32 +56,42 @@ import java.util.logging.Logger;
  * SipProvider implements the SIP transport layer, that is the layer responsable
  * for sending and receiving SIP messages. Messages are received by the callback
  * function defined in the interface SipProviderListener.
- * <p>
+ * 
  * SipProvider implements also multiplexing/demultiplexing service through the
- * use of SIP interface identifiers and <i>onReceivedMessage()<i/> callback
+ * use of SIP interface identifiers and <i>onReceivedMessage()</i> callback
  * function of specific SipProviderListener.
- * <p>
+ * 
  * A SipProviderListener can be added to a SipProvider through the
- * addSipProviderListener(id,listener) method, where: <b> - <i>id<i/> is the
- * SIP interface identifier the listener has to be bound to, <b> - <i>listener<i/>
- * is the SipProviderListener that received messages are passed to. <p/> The SIP
+ * addSipProviderListener(id,listener) method, where:
+ * - <i>id</i> is the
+ * SIP interface identifier the listener has to be bound to,
+ * - <i>listener</i>
+ * is the SipProviderListener that received messages are passed to.
+ * 
+ * The SIP
  * interface identifier specifies the type of messages the listener is going to
  * receive for. Together with the specific SipProvider, it represents the
  * complete SIP Service Access Point (SAP) address/identifier used for
- * demultiplexing SIP messages at receiving side. <p/> The identifier can be of
+ * demultiplexing SIP messages at receiving side.
+ * 
+ * The identifier can be of
  * one of the three following types: transaction_id, dialog_id, or method_id.
- * These types of identifiers characterize respectively: <br> - messages within
- * a specific transaction, <br> - messages within a specific dialog, <br> -
+ * These types of identifiers characterize respectively: 
+ * - messages within
+ * a specific transaction, 
+ * - messages within a specific dialog,
+ * -
  * messages related to a specific SIP method. It is also possible to use the the
- * identifier ANY to specify <br> - all messages that are out of any
+ * identifier ANY to specify 
+ * - all messages that are out of any
  * transactions, dialogs, or already specified method types.
- * <p>
+ * 
  * When receiving a message, the SipProvider first tries to look for a matching
  * transaction, then looks for a matching dialog, then for a matching method
  * type, and finally for a default listener (i.e. that with identifier ANY). For
  * the matched SipProviderListener, the method <i>onReceivedMessage()</i> is
- * fired.
- * <p>
+ * fired.-
+ * 
  * Note: no 482 (Loop Detected) responses are generated for requests that does
  * not properly match any ongoing transactions, dialogs, nor method types.
  */
@@ -115,7 +125,7 @@ public class SipProvider implements Configurable, TransportListener,
 	// public static final String NO_OUTBOUND="NO-OUTBOUND";
 	/**
 	 * Identifier used as listener id for capturing ANY incoming messages that
-	 * does not match any active method_id, transaction_id, nor dialog_id. <br>
+	 * does not match any active method_id, transaction_id, nor dialog_id.
 	 * In this context, "active" means that there is a active listener for that
 	 * specific method, transaction, or dialog.
 	 */
@@ -125,7 +135,7 @@ public class SipProvider implements Configurable, TransportListener,
 	 * Identifier used as listener id for capturing any incoming messages in
 	 * PROMISQUE mode, that means that messages are passed to the present
 	 * listener regardless of any other active SipProviderListeners for specific
-	 * messages. <p/> More than one SipProviderListener can be added and be
+	 * messages. More than one SipProviderListener can be added and be
 	 * active concurrently for capturing messages in PROMISQUE mode.
 	 */
 	public static final Identifier PROMISQUE = new Identifier("PROMISQUE");
@@ -595,10 +605,12 @@ public class SipProvider implements Configurable, TransportListener,
 	/**
 	 * Adds a new listener to the SipProvider for caputering any message in
 	 * PROMISQUE mode. It is the same as using method
-	 * addSipProviderListener(SipProvider.PROMISQUE,listener). <p/> When
+	 * addSipProviderListener(SipProvider.PROMISQUE,listener).
+         * 
+         * When
 	 * capturing messages in promisque mode all messages are passed to the
 	 * SipProviderListener before passing them to the specific listener (if
-	 * present). <br/> Note that more that one SipProviderListener can be active
+	 * present). Note that more that one SipProviderListener can be active
 	 * in promisque mode at the same time;in that case the same message is
 	 * passed to all PROMISQUE SipProviderListeners.
 	 * 

@@ -37,9 +37,9 @@ import org.zoolu.sip.provider.SipProvider;
 /**
  * Class sipx.message.MessageFactory extends class
  * sip.message.BaseMessageFactory.
- * <p />
+ * 
  * MessageFactory is used to create SIP messages (requests and responses).
- * <br />
+ * 
  * A valid SIP request sent by a UAC MUST, at least, contain the following
  * header fields: To, From, CSeq, Call-ID, Max-Forwards, and Via; all of these
  * header fields are mandatory in all SIP requests. These sip header fields are

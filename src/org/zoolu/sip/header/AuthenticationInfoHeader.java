@@ -95,7 +95,7 @@ public class AuthenticationInfoHeader extends AuthenticationHeader {
 	/**
 	 * Gets a String Vector of parameter names.
 	 * 
-	 * @returns a Vector of String.
+	 * @return a Vector of String.
 	 */
 	/* HSC CHANGES BEGIN */
 	public Vector<String> getParameters() {

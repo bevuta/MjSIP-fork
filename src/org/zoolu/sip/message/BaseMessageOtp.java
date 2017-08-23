@@ -32,7 +32,7 @@ import java.util.*;
 /**
  * Class BaseMessageOtp implements a generic SIP Message. It extends class
  * BaseMessage adding one-time-parsing functionality (it parses the entire
- * Message just when it is costructed). <p/> At the contrary, class BaseMessage
+ * Message just when it is costructed). At the contrary, class BaseMessage
  * works in a just-in-time manner (it parses the message each time a particular
  * header field is requested).
  */

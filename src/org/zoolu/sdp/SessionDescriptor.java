@@ -490,8 +490,8 @@ public class SessionDescriptor {
 	/**
 	 * Whether it has a particular attribute
 	 * 
-	 * @param a_name
-	 *            the attribute name
+	 * @param attribute_name
+         *        the attribute name
 	 * @return true if found, otherwise returns null
 	 */
 	public boolean hasAttribute(String attribute_name) {
@@ -522,8 +522,8 @@ public class SessionDescriptor {
 	/**
 	 * Gets a Vector of attribute values of a particular attribute name.
 	 * 
-	 * @param a_name
-	 *            the attribute name
+	 * @param attribute_name
+	 *        the attribute name
 	 * @return a Vector of AttributeField
 	 */
 	public Vector<AttributeField> getAttributes(String attribute_name) {
